@@ -23,10 +23,11 @@ public class Processor implements ItemProcessor<User, User>{
 	@Override
 	public User process(User user) throws Exception {
 		    MimeMessage message = sender.createMimeMessage();
-		
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
-			if(user.getGender()=="M") {
-				helper.setTo(user.getEmailId());
+			String gender = user.getGender();
+			helper.setTo(user.getEmailId());
+			if(gender.equals("M")) {
+				
 				helper.setText(
 						"<html><body>Hi <b>"+user.getName()+"</b> ,</br>Welcome to Caltex</br></br> Thanks for using our services </br>See you around</br>Team Caltex<img src='cid:id101'/><body></html>",
 						true);
@@ -34,8 +35,8 @@ public class Processor implements ItemProcessor<User, User>{
 				ClassPathResource file1 = new ClassPathResource("Caltexlogo.png");
 				helper.addInline("id101", file1);
 			}
-			else if(user.getGender()=="F"){
-				helper.setTo(user.getEmailId());
+			else{
+				
 				helper.setText(
 						"<html><body>Hi <b>"+user.getName()+"</b> ,</br>Welcome to amazon</br></br> Thanks for using our services </br>See you around</br>Team amazon<img src='cid:id101'/><body></html>",
 						true);

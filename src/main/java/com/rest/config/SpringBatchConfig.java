@@ -26,19 +26,14 @@ public class SpringBatchConfig {
 	public Job job(JobBuilderFactory jobBuilderFactory,StepBuilderFactory stepBuilderFactory,
 			ItemReader<User> itemReader,ItemWriter<User> itemWriter,ItemProcessor<User, User> itemProcessor) {
 		
-		Step step1 = stepBuilderFactory.get("ETL-Database-Load-male")
+		Step step1 = stepBuilderFactory.get("ETL-Database-Load")
 				.<User,User> chunk(50)
 				.reader(itemReader)
 				.processor(itemProcessor)
 				.writer(itemWriter)
 				.build();
 		
-		/*Step step2 = stepBuilderFactory.get("ETL-Database-Load-female")
-				.<User,User> chunk(1)
-				.reader(itemReader)
-				.processor(itemProcessor)
-				.writer(itemWriter)
-				.build();*/
+		
 				
 				
 		return jobBuilderFactory.get("ETL-Load")
@@ -50,7 +45,6 @@ public class SpringBatchConfig {
 	
 	private static final String QUERY_FIND_MALE = "SELECT * from user";
 	
-	//private static final String QUERY_FIND_FEMALE = "SELECT * from user where gender = 'F'";
 	
 	@Bean
 	ItemReader<User> databaseItemReader (DataSource datasource){

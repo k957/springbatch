@@ -3,6 +3,7 @@ package com.rest.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.batch.runtime.JobExecution;
 import javax.validation.Valid;
 
 import org.springframework.batch.core.BatchStatus;
@@ -15,6 +16,7 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
