@@ -34,7 +34,7 @@ public class Processor implements ItemProcessor<User, User>{
 				ClassPathResource file1 = new ClassPathResource("Caltexlogo.png");
 				helper.addInline("id101", file1);
 			}
-			else {
+			else if(user.getGender()=="F"){
 				helper.setTo(user.getEmailId());
 				helper.setText(
 						"<html><body>Hi <b>"+user.getName()+"</b> ,</br>Welcome to amazon</br></br> Thanks for using our services </br>See you around</br>Team amazon<img src='cid:id101'/><body></html>",
